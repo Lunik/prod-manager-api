@@ -1,0 +1,170 @@
+
+# Change pip's cache directory to be inside the project directory since we can
+# only cache local items.
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PYTHON_VERSION: "3-alpine"
+  PACKAGE_NAME: prodmanager
+  SAST_EXCLUDED_PATHS: "tests, venv"
+  SECRET_DETECTION_EXCLUDED_PATHS: "venv"
+
+default:
+  interruptible: true
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_REF_PROTECTED == "true"
+    - if: '$CI_COMMIT_TAG'
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+  - template: Security/License-Scanning.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+# Pip's cache doesn't store the python packages
+# https://pip.pypa.io/en/stable/topics/caching/
+#
+# If you want to also cache the installed packages, you have to install
+# them in a virtualenv and cache it as well.
+.python_cache: &python_cache
+  key: ${CI_COMMIT_REF_SLUG}-python
+  paths:
+    - .cache/pip
+    - venv/
+
+stages:
+  - test
+  - build
+  - validate
+  - deploy
+
+
+.python:
+  image: python:$PYTHON_VERSION
+  cache:
+    <<: *python_cache
+  before_script:
+    - apk add build-base
+    - python --version  # For debugging
+    - python -m venv venv
+    - source venv/bin/activate
+    - pip3 install --upgrade poetry
+    - rm -rf poetry.lock
+    - poetry --version
+    - poetry install
+
+test:
+  stage: test
+  extends: .python
+  rules:
+    - if: ! $CI_COMMIT_REF_PROTECTED
+      allow_failure: true
+  script:
+    - >
+      python3 -m pytest
+      -v
+      -n 4
+      --cov=${PACKAGE_NAME}
+      --junitxml=result.xml
+      --html=report.html
+      tests/
+    - coverage html
+    - coverage xml
+  coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+  artifacts:
+    when: always
+    paths:
+      - coverage.xml
+      - result.xml
+      - htmlcov
+      - report.html
+      - assets
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+      junit: result.xml
+
+lint:
+  stage: test
+  extends: .python
+  rules:
+    - if: ! $CI_COMMIT_REF_PROTECTED
+      allow_failure: true
+  script:
+    - >
+      pylint
+      ${PACKAGE_NAME}/*
+      | tee pylint-report.txt
+  artifacts:
+    when: always
+    paths:
+      - pylint-report.txt
+
+build_package:
+  stage: build
+  extends: .python
+  script:
+    - poetry build
+  artifacts:
+    when: always
+    paths:
+      - dist/
+
+build_doc:
+  stage: build
+  extends: .python
+  needs: []
+  script:
+    - apk add -u git
+    - cp README.md docs/index.md
+    - cp CHANGELOG.md docs/changelog.md
+    - mkdocs build --verbose 
+  artifacts:
+    paths:
+      - site/
+
+publish_develop:
+  stage: deploy
+  extends: .python
+  dependencies:
+    - build_package
+  environment:
+    name: develop
+    action: start
+  only:
+    - develop
+  script:
+    - poetry publish -r test
+
+publish_production:
+  stage: deploy
+  extends: .python
+  dependencies:
+    - build_package
+  environment:
+    name: production
+    action: start
+  only:
+    - tags
+  script:
+    - poetry publish
+
+pages:
+  stage: deploy
+  image: busybox
+  dependencies:
+    - build_doc
+  environment:
+    name: doc
+    action: start
+    url: https://prod-manager-api.tiwabbit.fr
+  only:
+    - tags
+  script:
+    - mv site/ public/
+  artifacts:
+    paths:
+      - public/

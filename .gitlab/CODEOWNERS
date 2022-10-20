@@ -1,0 +1,21 @@
+# When adding a group as a code owner, make sure to invite the group to the
+# project here: https://gitlab.com/prod-manager/prod-manager/-/project_members
+# As described in https://docs.gitlab.com/ee/user/project/code_owners.html
+
+^[Owner]
+/.gitlab/ @Lunik
+/*.md @Lunik
+/*.toml @Lunik
+/LICENCE @Lunik
+
+^[DEV]
+/prodmanager/ @Lunik
+
+^[Tester]
+/tests/ @Lunik
+/.gitlab-ci.yml @Lunik
+/.pylintrc @Lunik
+
+^[DOCS]
+/docs/ @Lunik
+/mkdocs.yml @Lunik
