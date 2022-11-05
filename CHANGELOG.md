@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- doc: Add missing documentation about the weather API
+
 
 ## 0.1.1
 
