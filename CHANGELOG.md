@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.1.2
+
+### Added
+
+- doc: Add missing documentation about the weather API
+- doc: Add links to [ProdManager](https://gitlab.com/prod-manager/prod-manager) project
+
+
 ## 0.1.1
 
 ### Fix

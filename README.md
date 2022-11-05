@@ -1,14 +1,14 @@
 # ProdManager API
 
-`prod-manager` is a Python package providing access to the ProdManager API.
+`prod-manager` is a Python package providing access to the [ProdManager][prodmanager] API.
 
 ## Features
 
 `prod-manager` enables you to:
 
-- write Pythonic code to manage your ProdManger resources.
-- pass arbitrary parameters to the ProdManger API. Simply follow ProdManger’s docs on what parameters are available.
-- access arbitrary endpoints as soon as they are available on ProdManger, by using lower-level API methods.
+- write Pythonic code to manage your [ProdManager][prodmanager] resources.
+- pass arbitrary parameters to the [ProdManager][prodmanager] API. Simply follow [ProdManager][prodmanager]’s docs on what parameters are available.
+- access arbitrary endpoints as soon as they are available on [ProdManager][prodmanager], by using lower-level API methods.
 - use persistent requests sessions for authentication, proxy and certificate handling.
 - flexible handling of paginated responses, including lazy iterators.
 
@@ -52,3 +52,4 @@ For guidelines for contributing to `prod-manager`, refer to [CONTRIBUTING.md](./
 
 <!-- Links -->
 [documentation-url]: https://prod-manager-api.tiwabbit.fr
+[prodmanager]: https://gitlab.com/prod-manager/prod-manager
