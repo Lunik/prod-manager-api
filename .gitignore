@@ -1,5 +1,5 @@
 venv
-
+.DS_Store
 __pycache__
 *.pyc
 
@@ -10,12 +10,20 @@ dist
 lib.egg-info
 
 .coverage
+htmlcov/
 
 report.html
 result.xml
 
 .pytest_cache
 
-assets
+/assets
 
 build
+
+site
+
+docs/index.md
+docs/changelog.md
+
+.cache
