@@ -134,6 +134,7 @@ publish_develop:
   environment:
     name: develop
     action: start
+    url: https://test.pypi.org/project/prod-manager/
   only:
     - develop
   script:
@@ -147,6 +148,7 @@ publish_production:
   environment:
     name: production
     action: start
+    url: https://pypi.org/project/prod-manager/
   only:
     - tags
   script:
