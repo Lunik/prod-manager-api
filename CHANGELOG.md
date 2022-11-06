@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added:
+
+- doc: Publish `CONTRIBUTING.md` in documentation website
+
 
 ## 0.1.2
 

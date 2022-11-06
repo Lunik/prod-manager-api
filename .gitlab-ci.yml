@@ -119,8 +119,9 @@ build_doc:
   needs: []
   script:
     - apk add -u git
-    - cp README.md docs/index.md
-    - cp CHANGELOG.md docs/changelog.md
+    - cp README.md docs/
+    - cp CHANGELOG.md docs/
+    - cp CONTRIBUTING.md docs/
     - mkdocs build --verbose 
   artifacts:
     paths:
