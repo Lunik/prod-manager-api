@@ -1,13 +1,13 @@
 [tool.poetry]
 
 name = "prod-manager"
-version = "0.1.3.dev01"
+version = "0.1.3.dev02"
 description = "Interact with a ProdManager instance"
 homepage = "https://gitlab.com/prod-manager/prod-manager-api"
 repository = "https://gitlab.com/prod-manager/prod-manager-api"
 documentation = "https://prod-manager-api.tiwabbit.fr"
 
-keywords = ["prod-manager"]
+keywords = ["prod-manager", "manager", "production", "monitor", "incident", "maintenance"]
 
 license = "GPL-3.0"
 
@@ -27,6 +27,22 @@ packages = [
 include = [
     "CHANGELOG.md"
 ]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "Natural Language :: English",
+    "Operating System :: POSIX",
+    "Topic :: System :: Monitoring",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Utilities"
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://gitlab.com/prod-manager/prod-manager-api/-/issues"
 
 [tool.poetry.dependencies]
 python = "^3.7"
