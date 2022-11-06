@@ -2,7 +2,7 @@ site_name: ProdManager API documentation
 
 repo_url: https://gitlab.com/prod-manager/prod-manager-api
 repo_name: prod-manager-api
-edit_uri: edit/develop/docs/
+edit_uri: edit/master/docs/
 
 theme:
   name: material
