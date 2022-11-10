@@ -5,6 +5,7 @@
 ### Added:
 
 - doc: Publish `CONTRIBUTING.md` in documentation website
+- doc: Add links to Issues/MergeRequests in GitLab page CHANGELOG
 
 
 ## 0.1.2
