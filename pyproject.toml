@@ -1,7 +1,7 @@
 [tool.poetry]
 
 name = "prod-manager"
-version = "0.1.3"
+version = "0.1.4.dev01"
 description = "Interact with a ProdManager instance"
 homepage = "https://gitlab.com/prod-manager/prod-manager-api"
 repository = "https://gitlab.com/prod-manager/prod-manager-api"
