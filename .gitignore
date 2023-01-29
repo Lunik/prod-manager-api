@@ -23,7 +23,8 @@ build
 
 site
 
-docs/index.md
-docs/changelog.md
+docs/README.md
+docs/CHANGELOG.md
+docs/CONTRIBUTING.md
 
 .cache

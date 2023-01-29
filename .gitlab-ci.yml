@@ -119,8 +119,9 @@ build_doc:
   needs: []
   script:
     - apk add -u git
-    - cp README.md docs/index.md
-    - cp CHANGELOG.md docs/changelog.md
+    - cp README.md docs/
+    - cp CHANGELOG.md docs/
+    - cp CONTRIBUTING.md docs/
     - mkdocs build --verbose 
   artifacts:
     paths:
@@ -134,6 +135,7 @@ publish_develop:
   environment:
     name: develop
     action: start
+    url: https://test.pypi.org/project/prod-manager/
   only:
     - develop
   script:
@@ -147,6 +149,7 @@ publish_production:
   environment:
     name: production
     action: start
+    url: https://pypi.org/project/prod-manager/
   only:
     - tags
   script:
