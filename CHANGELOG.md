@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.2.0
+
+## Added
+
+- chore: Add new Merge Request template for release
+- doc: Add documentation about Announcement (!3)
+- ci: Force update on dependencies in CI (!4)
+
+
 ## 0.1.3
 
 ### Added:
