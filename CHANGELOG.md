@@ -5,6 +5,7 @@
 ## Added
 
 - chore: Add new Merge Request template for release
+- doc: Add documentation about Announcement (!3)
 
 
 ## 0.1.3
