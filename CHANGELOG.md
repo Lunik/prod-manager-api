@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## Added
+
+- chore: Add new Merge Request template for release
+
 
 ## 0.1.3
 
