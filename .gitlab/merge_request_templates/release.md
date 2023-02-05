@@ -10,6 +10,7 @@ _Copy the full changelog here_
 - [ ] The [CHANGELOG][changelog] file is up to date
   - [ ] `[Unreleased]` have been replaced with the release version
 - [ ] The [CODEOWNERS][codeowners] file is up to date
+- [ ] `version` in `pyproject.toml` have been replaced with the release version
 
 <!-- Links -->
 
