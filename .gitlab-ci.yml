@@ -54,6 +54,7 @@ stages:
     - rm -rf poetry.lock
     - poetry --version
     - poetry install
+    - poetry update
 
 test:
   stage: test
