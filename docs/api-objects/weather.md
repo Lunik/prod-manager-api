@@ -19,3 +19,9 @@ incident_weather = pm.weather.incident()
 ```python
 maintenance_weather = pm.weather.maintenance()
 ```
+
+### Get announcement weather
+
+```python
+announcement_weather = pm.weather.announcement()
+```
