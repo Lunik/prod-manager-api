@@ -1,4 +1,5 @@
 site_name: ProdManager API documentation
+site_url: http://prod-manager-api.tiwabbit.fr
 
 repo_url: https://gitlab.com/prod-manager/prod-manager-api
 repo_name: prod-manager-api
